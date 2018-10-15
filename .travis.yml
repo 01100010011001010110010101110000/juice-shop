@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - 10
-  - 9
-  - 8
+- 10
+- 9
+- 8
 branches:
   except:
   - gh-pages
@@ -12,9 +12,6 @@ addons:
     packages:
     - xvfb
   chrome: stable
-  code_climate:
-    repo_token:
-      secure: NC3ew4c92DO4SAdbJvaZkaRnEZaZcAr9NcxOeraqAKHRXY3COnerWGR8+kIE9KiadcRdatmu0sSjWldDcAZfmMwOraMI9CDkqdPSjtjciCVEFdGi+OPOvMY/gOJU6XeM7lsO5MvYD7mqChl2gR6s7IO/klPahf53c97PPDo3C90=
 env:
   global:
   - DISPLAY=:99
@@ -32,45 +29,5 @@ after_success:
 - "./node_modules/.bin/lcov-result-merger 'build/reports/coverage/*/lcov.info' 'build/reports/coverage/lcov_merged.info'"
 - "./node_modules/.bin/codeclimate-test-reporter < ./build/reports/coverage/lcov_merged.info"
 notifications:
-  email:
-  - secure: ADLqaNm7lR8sgCkSz7eWtWdm8zZ9OsbkcQAi2nm7hQPWAkTWPfr9qeOBh39Z3PZvkgDdlUpNZc/uPlcEGEILznJRF3HlQjWrWksNNtY3xaRc01B4uXlDbODjttb6v9mOqkwUqRfQLeerOqNynNSkT129+mz4FANn0+oucZ3EuQc=
-  - secure: HhhSoqY87yd8Hkt+cfXk9XXDJeWViYQoPq8f7SJofkwSWtxfOS9GNbOUehZJDqjBMARoGi3SJBImRbisnwfMcEhKpSZs2S4Osdwk2Ayy0h8V/O+qHhiEuJq1mPbAWrYNGQerz16Ec4SbX6hPnAEle2SUwjbPUnfRRCROsJqfm0o=
   webhooks:
-    urls:
-    - secure: QZ3/2h7hThg527PX1z7kTTRGL5jEbTTHRbetYHt8Gzgdhvtruq4cjxMQZdUcmxKlncAhoB976iFl/Ja9EpExgrXnt/Tj0Aft6JDc7g8y0kuD/SiQpFT7d46R7vOTJeFHyMzfQN9M/h81DXrG+VO5OPGR/QYNa39kMzkTc86tt1E=
-    on_success: always
-    on_failure: always
-    on_start: never
-  slack:
-    rooms:
-      secure: jis/Fcasy+4QCqg6SZnf1XxXTNFrQENutYCN4QuMUQbfiD6QsLxTQS5o0MZ8e9EYTdptUXmjjgkaEulxO5fIUtmDcOrKcPxToDMjyCZEglfEf9CzRVRap7LnZwoCZ5yet/0E68qt4QhfTgfwYc9QIfSZo45rdyNS6BXI2vomGqE=
-    on_success: change
-    on_failure: change
-    on_start: never
-    on_pull_requests: false
-before_deploy:
-- rm -rf node_modules
-- npm install --production
-- grunt package
-deploy:
-- provider: heroku
-  api_key:
-    secure: faVT3Ne/O7lVo0+pTm6RcXss0ivvSoODaxMkiVwdpk/51/EsRd4+/Gjmp3RGPmW5H5luOephsI8uFMMhgKiu5i3NV58ZSx29Z0aby+bfIhesZGZqJQvxeW8B0J8vlQFnEHP6xc6SAlXSdNjNpDeBaV7WSFSGKGp4Nh5QyO2ySLI=
-  app:
-    master: juice-shop
-    develop: juice-shop-staging
-  on:
-    repo: bkimminich/juice-shop
-    node: 10
-- provider: releases
-  overwrite: true
-  api_key:
-    secure: fHybcH65ZdS5ITVKH2tIVBITVSiRQJ1AuWqLP16gyAz5pdmWbLM5gA/74zCozanRmuB+7pGFbhDNm075JWoEDVrWSFDLnNiXvfgUYa4oVEiWZlLvOfSARaU3AQPlVvFVhIbG9SA5IEwTtNFbyHjqLjGn/DSBpiIDqqxhF57vw7Q=
-  file: dist/*
-  skip_cleanup: true
-  file_glob: true
-  draft: true
-  tag_name: "$TRAVIS_TAG"
-  on:
-    repo: bkimminich/juice-shop
-    tags: true
+    secure: L+X7UC9wCd//tlJEkO0TgiJYaQamy42HM9AEDO6wKvMQ90mkeDmD+YVEE61F9B/wzUR74oAqB0dgjG5SC7+Aal+DkXmPgpJ67QPkq0TIXbiSo/Td6T6HRsfa99t7AevHd0HyNOfj5BK7lftm/5q5PAh3D/pS1fvURgqpCLimFgkllLfoDoVWSjtDRr3P/RKjHlXFZaVr/xUgMxeQVCi5PbYbmNFg3+mRoOR1nm0a9SWKln4nvnSSHfBJXX+gHnTKzif6LGfG0vGPSCVnS1xUKbamJJFUc/5EHLdJb74stMWDzZNOb+cumMEuzEnZSph120pjiB69WFhWviOr6IPrSAnquRvXtHNjeB1aJPsMnPrKamNyY9w9ORcFC8bErzUrC6XU0LPBcq0X0J0ZYFVmwaw+z2vxe6nsouIc+yWavxGphE6/sBj6QLj6OhHwI8jq9yHB98hky0ydMjGqju8dcalifyh4PdPaSJTqz2q8IJL4gsfvB1nSUCtKf8oNzbCxjeK3P6PoKT0LNVpyjumiNNRTyPVy+B80YpDq5HmexB9jLkAsrafYXD87kPydmbY2r38hpF4wKshuUlB6tqTBab9pdssuK0kFWgwsi4roUJitAFX/SdB8hKT1PCa/xrjrsX8MaN917kZ141mxtUOEW6EDvB3CMikG4EFnC3BGHEc=
