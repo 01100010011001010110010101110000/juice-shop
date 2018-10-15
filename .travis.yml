@@ -13,6 +13,8 @@ addons:
     - xvfb
   chrome: stable
   sonarcloud:
+    projectKey: 01100010011001010110010101110000_juice-shop
+    sources: "."
     organization: "01100010011001010110010101110000"
     token: $token
 env:
