@@ -13,7 +13,7 @@ addons:
     - xvfb
   chrome: stable
   sonarcloud:
-    organization: '01100010011001010110010101110000'
+    organization: "01100010011001010110010101110000"
     token:
       secure: "2OklzQA1z8H9pTljYIRH2LNaAH/U+PO8wHoFJMIEk4VfQCz12aSEc1bCoyqf+zphx0Jo11EvIiSjkKr5+4JGCKKj5pqDiFPc7L9x4y51Myx9G2eK+dS4n/DM7JqrwjXznnAjLK1SVKcVrz8aiLmWdAJa6YvZ0+vyjjQ4iJutMXjl1YkSeQTJ0rvPGNve9NX/YLaPu+MsnyR5eWG5JukQxsLayUanHqpM27JEFYi2fBioXcTpOz7p1lC6UOZMmOmB9AKao6AcIZz8x2dZ4O/pFI2iOb5gS6R4P3G2NMMuJIDkJppYMS9J8cw/dI35rrgtaqtNFlhN7OGn+jSLToHYJB6m7iLUFxeJ7FAkDU0s/TFXS56LaJDRRmWz2ZEXyQ47C7/DBubonX5/CqSQj0SP6BRHwbNLEZc/2aKWBaNGkLHjJqVDP9G/vbLtrWwDElXyGUETNNsLOuOpEFOofRrH66PXxnE0aqssmMNYx/Yjm2mBbeiBrM09POm2mlPSYfopa6vr0U+2tPrdo9s6K/OxuGFKB6Kd8lx3E1+nz3N0GBKcJiz2Hn6AXFFDM452yDT1CHHwwyNyD/l1UUXqARy0qM+BAa+BwdvvsbbbWiCSHkWWtG5TT0s9ohTIYWSB3UxQIuCJV9vF88Sp+yqzpQHF/ABKb+aLBXx9g834/n0jRqA="
 env:
@@ -26,10 +26,10 @@ before_script:
 - sh -e /etc/init.d/xvfb start
 - sleep 3
 script:
+- sonar-scanner -X
 - npm test
 - npm run frisby
 - NODE_ENV=ctf npm run protractor
-- sonar-scanner -X
 after_success:
 - "./node_modules/.bin/lcov-result-merger 'build/reports/coverage/*/lcov.info' 'build/reports/coverage/lcov_merged.info'"
 - "./node_modules/.bin/codeclimate-test-reporter < ./build/reports/coverage/lcov_merged.info"
